@@ -1,0 +1,755 @@
+/* ===================================================================
+   DESIGN TOKENS — single source of truth for the whole site.
+   One accent (brand red, already used on the navbar logo), one neutral
+   scale, one success/price color, one radius scale, one shadow scale.
+   =================================================================== */
+:root {
+  --accent: #dc2626;
+  --accent-dark: #b91c1c;
+  --accent-soft: #fef2f2;
+
+  --success: #059669;
+  --success-dark: #047857;
+
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --strike: #9ca3af;
+
+  --border-color: #e5e7eb;
+  --border-color-soft: #ebedf1;
+
+  --bg-page: #f5f7fa;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f9fafb;
+
+  --radius-sm: 8px;   /* buttons, inputs, badges */
+  --radius-md: 12px;  /* cards, panels */
+  --radius-lg: 20px;  /* hero / large feature blocks */
+
+  --shadow-sm: 0 1px 3px rgba(17, 24, 39, .06), 0 1px 2px rgba(17, 24, 39, .05);
+  --shadow-md: 0 6px 18px rgba(17, 24, 39, .08);
+  --shadow-lg: 0 16px 32px rgba(17, 24, 39, .14);
+
+  --transition: .2s ease;
+}
+
+/* ===================================================================
+   Base & typography
+   =================================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+  font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto,
+    Helvetica, Arial, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.15rem; }
+h5 { font-size: 1.05rem; font-weight: 600; }
+h6 { font-size: .95rem; font-weight: 600; }
+
+small, .text-muted {
+  color: var(--text-muted) !important;
+  font-size: .85rem;
+}
+
+a {
+  transition: color var(--transition);
+}
+
+.category-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  font-weight: 400;
+  transition: color var(--transition);
+}
+
+.category-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ===================================================================
+   Navbar
+   =================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white !important;
+  box-shadow: var(--shadow-md);
+  padding: 10px 30px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent) !important;
+}
+
+/* Brand logo pill (Home.js/Navbar's inline-styled "HP STORE" link is the
+   first anchor inside .container-fluid — give it the same hover feedback
+   as every other interactive element without touching the JSX). */
+.navbar .container-fluid > a:first-child {
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+.navbar .container-fluid > a:first-child:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  opacity: .93;
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+.dropdown-menu {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: .4rem;
+}
+
+.dropdown-item {
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background: var(--bg-surface-alt);
+  color: var(--accent);
+}
+
+.form-control, .form-select {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.search-box,
+.navbar .form-control {
+  background: white;
+  box-shadow: none;
+  min-width: 350px;
+}
+
+.search-box:focus,
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, .12);
+}
+
+.profile-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.profile-avatar:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===================================================================
+   Hero / landing sections (Front.js)
+   =================================================================== */
+.hero-banner {
+  background: #ffffff;
+  margin: 20px 0;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  transition: box-shadow var(--transition);
+}
+
+.hero-banner:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-img {
+  width: 70%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.hero-banner:hover .hero-img {
+  box-shadow: var(--shadow-lg);
+}
+
+.recent-section {
+  padding: 20px;
+}
+
+.recent-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.recent-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.recent-row::-webkit-scrollbar-thumb {
+  background: #c7cbd1;
+  border-radius: var(--radius-sm);
+}
+
+.recent-card {
+  min-width: 220px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.recent-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.recent-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.review-row {
+  scrollbar-width: none;
+}
+
+.review-row::-webkit-scrollbar {
+  display: none;
+}
+
+.review-card {
+  min-width: 300px;
+  max-width: 300px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===================================================================
+   Cards — sitewide base
+   =================================================================== */
+.card {
+  border: none !important;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card img {
+  height: 220px;
+  object-fit: contain;
+  padding: 20px;
+  background: white;
+  transition: transform var(--transition);
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  height: 50px;
+  overflow: hidden;
+}
+
+.price {
+  color: var(--success);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.cart-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* A handful of pages (Cart.js item cards + total card, Pay.js address
+   cards) still carry Bootstrap's bg-dark/text-white utility classes,
+   which is where the site's old "everything is a black card" look came
+   from. Same fix as the product-card pass, applied everywhere it still
+   shows up, so the whole site reads as one consistent light theme. */
+.card.bg-dark.text-white {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color-soft) !important;
+}
+
+.card.bg-dark.text-white .text-light {
+  color: var(--text-muted) !important;
+}
+
+.card.bg-dark.text-white .text-info {
+  color: var(--text-muted) !important;
+}
+
+.card.bg-dark.text-white .text-success {
+  color: var(--success) !important;
+}
+
+/* ===================================================================
+   Buttons — sitewide
+   =================================================================== */
+.btn {
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform .15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark) !important;
+  border-color: var(--accent-dark) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-success {
+  background: var(--success) !important;
+  border: 1px solid var(--success) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-success:hover {
+  background: var(--success-dark) !important;
+  border-color: var(--success-dark) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger {
+  background: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-danger:hover {
+  background: var(--accent-dark) !important;
+  border-color: var(--accent-dark) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-dark {
+  background: var(--text-primary) !important;
+  border: 1px solid var(--text-primary) !important;
+  color: #fff !important;
+}
+
+.btn-dark:hover {
+  background: #000 !important;
+  border-color: #000 !important;
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-warning {
+  background: #fff7ed !important;
+  border: 1px solid #fdba74 !important;
+  color: #9a3412 !important;
+}
+
+.btn-warning:hover {
+  background: #ffedd5 !important;
+}
+
+.btn-info {
+  background: #f0f9ff !important;
+  border: 1px solid #7dd3fc !important;
+  color: #075985 !important;
+}
+
+.btn-info:hover {
+  background: #e0f2fe !important;
+}
+
+.btn-close {
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.btn-close:hover {
+  opacity: .75;
+  transform: scale(1.05);
+}
+
+.category-btn {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.category-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===================================================================
+   Alerts / badges
+   =================================================================== */
+.alert {
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.alert.bg-danger {
+  background: var(--accent) !important;
+}
+
+/* ===================================================================
+   Profile page — was entirely unstyled (bare div stack); this gives it
+   the same card/typography language as the rest of the site.
+   =================================================================== */
+.profile-card {
+  max-width: 480px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 2.25rem 2rem;
+  transition: box-shadow var(--transition);
+}
+
+.profile-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.profile-header {
+  text-align: center;
+}
+
+.profile-header h2 {
+  margin: 0;
+}
+
+.profile-header .profile-avatar {
+  width: 84px;
+  height: 84px;
+  font-size: 2rem;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.info-box {
+  padding: .85rem 1rem;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color-soft);
+  border-radius: var(--radius-sm);
+}
+
+.info-box h6 {
+  margin: 0 0 .25rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.info-box p {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ===================================================================
+   Footer (Front.js's full footer — Footer1.js's dark strip is left as
+   an intentional dark closing band, not part of this light theme)
+   =================================================================== */
+.footer {
+  background: white;
+  color: var(--text-secondary);
+  padding: 40px;
+  text-align: center;
+  margin-top: 50px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===================================================================
+   Product Card Redesign — Home & Category grids
+   Scoped entirely to .product-card so cards elsewhere keep their own
+   (now-consistent) card treatment. Pure visual pass — no markup/logic
+   changes beyond the small scoping classNames already added.
+   =================================================================== */
+.product-card {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color-soft) !important;
+}
+
+.product-card .card-img-top {
+  border-bottom: 1px solid var(--border-color-soft);
+}
+
+.product-card .card-body {
+  padding: 1.15rem 1.25rem 1.3rem;
+}
+
+/* Grid applied at both possible button-parent levels: Home.js nests the
+   3 action buttons inside .card-body, Category.js places them as direct
+   siblings of .card-body under .product-card. Text/image elements are
+   forced to span both columns (full-width rows); Buy Now also spans full
+   width; Add To Cart + Wishlist are left unspanned so they sit side by
+   side automatically. Harmless/inert wherever a level has no buttons. */
+.product-card,
+.product-card .card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+  gap: .6rem;
+}
+
+.product-card > .card-img-top,
+.product-card > .card-body,
+.product-card .card-body > h5,
+.product-card .card-body > p:first-of-type,
+.product-card .card-body > h4,
+.product-card .card-body > p:nth-of-type(2),
+.product-card .product-card-btn-buy {
+  grid-column: 1 / -1;
+}
+
+/* Product name */
+.product-card .card-body h5 {
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-primary) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Description */
+.product-card .card-body > p:first-of-type {
+  margin: 0 0 .75rem;
+  font-size: .84rem;
+  line-height: 1.5;
+  color: var(--text-muted) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Category.js: plain price heading (no discount markup there) */
+.product-card .card-body h4 {
+  margin: 0 0 .9rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--success) !important;
+}
+
+/* Home.js: price row (strike-through original price + sale price + % badge) */
+.product-card .card-body > p:nth-of-type(2) {
+  margin: 0 0 .9rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.product-card .card-body > p:nth-of-type(2) .text-decoration-line-through {
+  color: var(--strike) !important;
+  font-size: .82rem;
+  font-weight: 400;
+  margin: 0 !important;
+}
+
+.product-card .card-body > p:nth-of-type(2) .text-success {
+  color: var(--success) !important;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.product-card .card-body > p:nth-of-type(2) .btn-danger {
+  background: var(--accent-soft) !important;
+  color: var(--accent) !important;
+  border: 1px solid rgba(220, 38, 38, .25) !important;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .2rem .55rem !important;
+  border-radius: 999px;
+  box-shadow: none !important;
+  margin: 0 !important;
+  pointer-events: none;
+  transform: none !important;
+}
+
+/* ---- Action buttons: clear visual hierarchy ----
+   Buy Now = strong filled primary, full width, own row.
+   Add To Cart + Add to Wishlist = equal-width secondary buttons sharing
+   the row below (grid handles the 8-10px gap + side-by-side placement). */
+.product-card .product-card-btn-buy,
+.product-card .product-card-btn-cart,
+.product-card .product-card-btn-wish {
+  display: block;
+  width: 100%;
+  margin: 0 !important;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .15s ease;
+}
+
+/* Primary action: Buy Now — strongest, filled */
+.product-card .product-card-btn-buy {
+  background: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: .92rem;
+  padding: .6rem .9rem;
+  box-shadow: 0 3px 8px rgba(220, 38, 38, .25);
+}
+
+.product-card .product-card-btn-buy:hover {
+  background: var(--accent-dark) !important;
+  border-color: var(--accent-dark) !important;
+  box-shadow: 0 5px 12px rgba(220, 38, 38, .32);
+  transform: translateY(-1px);
+}
+
+/* Secondary action: Add To Cart — light/ghost, clearly lighter than Buy Now */
+.product-card .product-card-btn-cart {
+  background: #f3f4f6 !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 600;
+  font-size: .8rem;
+  padding: .52rem .5rem;
+}
+
+.product-card .product-card-btn-cart:hover {
+  background: #e9ebef !important;
+  border-color: #d1d5db !important;
+  color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+/* Secondary action: Add to Wishlist — real button treatment, same size
+   class as Add To Cart, distinguished by a soft outline instead of fill */
+.product-card .product-card-btn-wish {
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  font-size: .8rem;
+  padding: .52rem .5rem;
+}
+
+.product-card .product-card-btn-wish:hover {
+  background: var(--accent-soft) !important;
+  border-color: rgba(220, 38, 38, .3) !important;
+  color: var(--accent) !important;
+  transform: translateY(-1px) scale(1.02);
+}
