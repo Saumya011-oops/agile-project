@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function Home({cart, setCart, showAlert, wishlist,
   setWishlist,}) {
   const [products, setProducts] = useState([]);
- const user = JSON.parse(localStorage.getItem("user"));
-const username = user?.name;
   useEffect(() => {
     getProducts();
   }, []);
@@ -58,7 +56,6 @@ const buynow = (product) => {
     else {
       return b.price - a.price
     }
-    return 0;
   })
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
  
 export default function Category({cart, setCart, showAlert,wishlist,setWishlist,}) {
@@ -17,25 +17,19 @@ const filteredProducts = products.filter(
     else {
       return b.price - a.price
     }
-    return 0;
   })
 
-   const user = JSON.parse(localStorage.getItem("user"));
-const username = user?.name;
-
-
- 
-  useEffect(() => {
-    getProducts();
-  }, [category]);
-
-  const getProducts = async () => {
+  const getProducts = useCallback(async () => {
     const response = await axios.get(
       `https://dummyjson.com/products/category/${category}`
     );
 
     setProducts(response.data.products);
-  };
+  }, [category]);
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
  const addToCart = (product) => {
   console.log("Added:", product);
 

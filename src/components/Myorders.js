@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 export default function MyOrders() {
   const [orders, setOrders] = useState([]);
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
-
   useEffect(() => {
+   const user = JSON.parse(localStorage.getItem("user"));
    console.log("USER =", user);
     if (!user?._id) return;
 

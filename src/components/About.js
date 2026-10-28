@@ -1,5 +1,5 @@
 
-export default function () {
+export default function About() {
   return (
     <div className='container text-info'>
         <h3 className="text-center text-success mt-4">

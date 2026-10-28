@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const user = JSON.parse(localStorage.getItem("user"));
-const username = user?.name || "User";
-
-export default function Front({product}) {
+export default function Front() {
 
   const [recentProducts, setRecentProducts] = useState([]);
-
-  const { id } = useParams();
-
 
   useEffect(() => {
 
@@ -167,7 +161,7 @@ export default function Front({product}) {
     <>
 
 
-      <marquee className="mb-0 bg-dark text-white"
+      <div className="mb-0 bg-dark text-white"
         style={{
           background: "white",
           padding: "10px",
@@ -177,7 +171,7 @@ export default function Front({product}) {
         ......
         Flat 50% OFF | Free Delivery | Extra 10% OFF |
         Buy 1 Get 1 Free | Premium Quality Products.....
-      </marquee>
+      </div>
       <div className="hero-banner" onClick={() => navigate("/home")} style={{ cursor: "pointer" }}>
         <img
           src="/images/bannerblur.png"
@@ -186,7 +180,7 @@ export default function Front({product}) {
         />
       </div>
 
-      <marquee scrollamount="6" className="bg-dark text-white" style={{
+      <div className="bg-dark text-white" style={{
         background: "white",
         padding: "10px",
         fontWeight: "bold"
@@ -203,7 +197,7 @@ export default function Front({product}) {
         🏀 Sports |
         🕶️ Sunglasses |
         🛋️ Furniture
-      </marquee>
+      </div>
 
 
 
